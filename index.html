@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>javascript frit_shop</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <script>
+        // Set up the available fruits and their prices
+const fruits = {
+  apple: 1.00,
+  banana: 0.75,
+  cherry: 2.50,
+  durian: 5.00,
+  elderberry: 3.25
+};
+
+// Initialize the shopping cart and total price
+let cart = {};
+let totalPrice = 0;
+
+// Keep prompting the user for fruit selection until they choose to stop
+while (true) {
+  const fruit = prompt(`Enter a fruit to add to your cart (available fruits: ${Object.keys(fruits).join(', ')}). Type "stop" to finish shopping.`);
+
+  // If the user types "stop", exit the loop
+  if (fruit === 'stop') {
+    break;
+  }
+
+  // If the user enters a valid fruit, add it to the cart and update the total price
+  if (fruits.hasOwnProperty(fruit)) {
+    const quantity = parseInt(prompt(`Enter the quantity of ${fruit} you want to buy.`));
+    cart[fruit] = quantity;
+    totalPrice += quantity * fruits[fruit];
+    alert(`${quantity} ${fruit}(s) added to your cart.`);
+  } else {
+    alert(`${fruit} is not available. Please choose another fruit.`);
+  }
+}
+
+// Display the user's cart and total price
+let cartItems = '';
+for (const fruit in cart) {
+  cartItems += `${fruit}: ${cart[fruit]}<br>`;
+}
+document.write(`<h2>Your shopping cart:</h2>${cartItems}<p>Total price: $${totalPrice.toFixed(2)}</p>`);
+
+    </script>
+</body>
+</html>
